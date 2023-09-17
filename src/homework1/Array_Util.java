@@ -1,7 +1,12 @@
 package homework1;
 
 public class Array_Util {
-    int[] numbers = {1,6,3,9,15,52,-3,5,8};
+    int[] numbers;
+
+    public Array_Util(int[] numbers) {
+        this.numbers = numbers;
+    }
+
     void Example1() {
         System.out.print("Все элементы массива:");
         for (int i = 0; i < numbers.length; i++) {
