@@ -21,11 +21,20 @@ public class EmployeeStorage {
     }
 
 
-    public void search(String keyword) {
+    public void searchById(String keyword) {
         for (int i = 0; i < size; i++) {
-            if (employees[i].getEmployeeID().contains(keyword) || employees[i].getCompany().contains(keyword)) {
-                System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany()); ;
+            if (employees[i].getEmployeeID().contains(keyword)) {
+                System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany());
+                ;
 
+            }
+        }
+    }
+
+    public void searchBYCompany(String keyword1) {
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getCompany().contains(keyword1)) {
+                System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany());
             }
         }
     }
@@ -34,6 +43,7 @@ public class EmployeeStorage {
         Employee[] tmp = new Employee[employees.length + 10];
         System.arraycopy(employees, 0, tmp, 0, employees.length);
         employees = tmp;
+    }
+}
 
-}
-}
+
