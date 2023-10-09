@@ -1,6 +1,6 @@
-package homework.employee;
+package homework.Employee;
 
-import classwork.library.Book;
+import homework.Employee.Employee;
 
 public class EmployeeStorage {
     private Employee[] employees = new Employee[10];
@@ -15,7 +15,7 @@ public class EmployeeStorage {
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany());
+            System.out.println(employees[i]);
 
         }
     }

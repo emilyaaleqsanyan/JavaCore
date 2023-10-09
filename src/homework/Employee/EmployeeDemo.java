@@ -1,7 +1,4 @@
-package homework.employee;
-
-import classwork.library.Book;
-import classwork.library.BookStorage;
+package homework.Employee;
 
 import java.util.Scanner;
 

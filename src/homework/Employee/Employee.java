@@ -1,4 +1,4 @@
-package homework.employee;
+package homework.Employee;
 
 public class Employee {
     private String name;
@@ -66,5 +66,17 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", employeeID='" + employeeID + '\'' +
+                ", salary=" + salary +
+                ", company='" + company + '\'' +
+                ", position='" + position + '\'' +
+                '}';
     }
 }
