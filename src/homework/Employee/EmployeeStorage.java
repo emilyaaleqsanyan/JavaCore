@@ -30,8 +30,39 @@ public class EmployeeStorage {
             }
         }
     }
+        private int getIndexById(String employeeId) {
+            for (int i = 0; i < size; i++) {
+                if (employees[i].getEmployeeID().equals(employeeId)) {
+                    return i;
+                }
+            }
+            return -1;
 
-    public void searchBYCompany(String keyword1) {
+
+        }
+
+
+    public  Employee getById(String employeeId) {
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getEmployeeID().equals(employeeId)) {
+                return employees[i];
+            }
+        }
+        return null;
+    }
+
+    public void deleteBYID(String id) {
+        int indexById = getIndexById(id);
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getEmployeeID().equals(id)) {
+                employees[i - 1] = employees[i];
+            }
+            size--;
+        }
+    }
+
+
+    public void searchByCompany(String keyword1) {
         for (int i = 0; i < size; i++) {
             if (employees[i].getCompany().contains(keyword1)) {
                 System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany());
@@ -44,6 +75,8 @@ public class EmployeeStorage {
         System.arraycopy(employees, 0, tmp, 0, employees.length);
         employees = tmp;
     }
+
+
 }
 
 
