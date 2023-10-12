@@ -1,0 +1,44 @@
+package homework.medicalCenter;
+
+public class PatientStorage {
+    private   Patient[] patients = new Patient[10];
+    private int size;
+    public Patient getById(String patientId) {
+        for (int i = 0; i < size; i++) {
+            if (patients[i].getId().equals(patientId)) {
+                return patients[i];
+            }
+        }
+        return null;
+    }
+
+    public void add(Patient patient) {
+        if(size == patients.length){
+            extend();
+        }
+        patients[size++] = patient;
+
+    }
+
+    private void extend() {
+        Patient[] tmp = new Patient[patients.length + 10];
+        System.arraycopy(patients, 0, tmp, 0, patients.length);
+        patients = tmp;
+    }
+
+
+    public void print() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(patients[i]);
+        }
+    }
+
+
+    public void printByDoctor(Doctor doctorFromStorage) {
+        for (int i = 0; i < size; i++) {
+            if (patients[i].getDoctor().equals(doctorFromStorage)) {
+                System.out.println(patients[i]);
+            }
+        }
+    }
+}
