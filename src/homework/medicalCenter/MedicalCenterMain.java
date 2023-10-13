@@ -6,6 +6,9 @@ import homework.medicalCenter.model.Patient;
 import homework.medicalCenter.storage.DoctorStorage;
 import homework.medicalCenter.storage.PatientStorage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MedicalCenterMain {
@@ -13,8 +16,9 @@ public class MedicalCenterMain {
     private final static Scanner scanner = new Scanner(System.in);
     private final static DoctorStorage doctorStorage = new DoctorStorage();
     private final static PatientStorage patientStorage = new PatientStorage();
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException{
         boolean isRun = true;
 
         while (isRun) {
@@ -76,7 +80,7 @@ public class MedicalCenterMain {
 
     }
 
-    private static void addPatient() {
+    private static void addPatient() throws ParseException {
         System.out.println("Please choose doctor id");
         doctorStorage.print();
         String doctorId = scanner.nextLine();
@@ -98,8 +102,9 @@ public class MedicalCenterMain {
         String patientSurname = scanner.nextLine();
         System.out.println("Please input patient phone");
         String patientPhone = scanner.nextLine();
-        System.out.println("Please input register date time");
+        System.out.println("Please input register date time(dd/MM/yyyy hh:mm");
         String registerDateTame = scanner.nextLine();
+        Date date = sdf.parse(registerDateTame);
         Patient patient = new Patient(patientId, patientName, patientSurname, patientPhone, doctorFromStorage, registerDateTame);
         patientStorage.add(patient);
         System.out.println("Patient registered!");
