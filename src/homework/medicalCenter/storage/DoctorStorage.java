@@ -1,6 +1,6 @@
-package homework.medicalCenter;
+package homework.medicalCenter.storage;
 
-import homework.employeemanagment.Company;
+import homework.medicalCenter.model.Doctor;
 
 public class DoctorStorage {
 

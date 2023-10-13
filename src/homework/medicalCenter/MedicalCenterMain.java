@@ -1,7 +1,10 @@
 package homework.medicalCenter;
 
 
-import homework.employeemanagment.Company;
+import homework.medicalCenter.model.Doctor;
+import homework.medicalCenter.model.Patient;
+import homework.medicalCenter.storage.DoctorStorage;
+import homework.medicalCenter.storage.PatientStorage;
 
 import java.util.Scanner;
 
