@@ -1,7 +1,5 @@
 package homework.Employee;
 
-import homework.employeemanagment.Company;
-
 import java.util.Scanner;
 
 public class EmployeeDemo {

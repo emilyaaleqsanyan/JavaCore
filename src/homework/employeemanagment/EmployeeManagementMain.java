@@ -1,5 +1,13 @@
 package homework.employeemanagment;
 
+import homework.employeemanagment.model.Company;
+import homework.employeemanagment.model.Employee;
+import homework.employeemanagment.storage.CompanyStorage;
+import homework.employeemanagment.storage.EmployeeStorage;
+import homework.employeemanagment.util.DateUtil;
+
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
 
 public class EmployeeManagementMain {
@@ -7,7 +15,7 @@ public class EmployeeManagementMain {
     private final static EmployeeStorage employeeStorage = new EmployeeStorage();
     private final static CompanyStorage companyStorage = new CompanyStorage();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         boolean isRun = true;
 
         while (isRun) {
@@ -177,7 +185,7 @@ public class EmployeeManagementMain {
     }
 
 
-    private static void addEmployee() {
+    private static void addEmployee() throws ParseException {
         System.out.println("Please choose company id");
         companyStorage.print();
         String companyId = scanner.nextLine();
@@ -190,7 +198,7 @@ public class EmployeeManagementMain {
         String employeeId = scanner.nextLine();
         Employee employeeFromStorage = employeeStorage.getById(employeeId);
         if (employeeFromStorage != null) {
-            System.out.println("employee with " + employeeId + "id already exists");
+            System.out.println("employee with " + employeeId + "is already exists");
             return;
         }
         System.out.println("please input employee name");
@@ -203,8 +211,11 @@ public class EmployeeManagementMain {
         String employeePosition = scanner.nextLine();
         System.out.println("please input employee salary AMD");
         double employeeSalary = Double.parseDouble(scanner.nextLine());
-        System.out.println("please input employee surname");
-        Employee employee = new Employee(employeeId, employeeName, employeeSurname, employeePhone, employeeSalary, employeePosition, companyFromStorage);
+        System.out.println("please input employee date of birthday (dd-MM-yyyy)");
+        String dateOfBirthdayStr = scanner.nextLine();
+         Date dateOfBirthday = DateUtil.stringToDate(dateOfBirthdayStr);
+         Date registerDate = new Date();
+        Employee employee = new Employee(employeeId, employeeName, employeeSurname, employeePhone, employeeSalary, employeePosition, companyFromStorage, dateOfBirthday, registerDate);
         employeeStorage.add(employee);
         System.out.println("Employee registered!");
     }

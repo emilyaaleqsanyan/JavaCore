@@ -1,14 +1,17 @@
-package homework.employeemanagment;
+package homework.employeemanagment.storage;
+
+import homework.employeemanagment.model.Company;
+import homework.employeemanagment.model.Employee;
 
 public class EmployeeStorage {
     private Employee[] employees = new Employee[10];
     private int size;
 
-    public void add(Employee company) {
+    public void add(Employee employee) {
         if (size == employees.length) {
             extend();
         }
-        employees[size++] = company;
+        employees[size++] = employee;
     }
 
     public void print() {
