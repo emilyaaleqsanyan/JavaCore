@@ -1,6 +1,9 @@
 package homework.medicalCenter.model;
 
-public class Person {
+
+import java.util.Objects;
+
+public abstract class Person {
 
     private String id;
     private String name;
@@ -47,6 +50,19 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(phone, person.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, phone);
     }
 
     @Override
