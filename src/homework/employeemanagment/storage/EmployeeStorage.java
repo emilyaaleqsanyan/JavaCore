@@ -1,5 +1,6 @@
 package homework.employeemanagment.storage;
 
+import homework.employeemanagment.exception.EmployeeNotFoundException;
 import homework.employeemanagment.model.Company;
 import homework.employeemanagment.model.Employee;
 
@@ -32,7 +33,7 @@ public class EmployeeStorage {
                 return employees[i];
             }
         }
-        throw new EmployeeNotFoundException("Null");
+        throw new EmployeeNotFoundException("Employee with " + employeeId + " does not found!");
     }
 
     public void searchEmployeesByCompany(Company companyFromStorage) {

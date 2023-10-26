@@ -1,5 +1,5 @@
 package homework.employeemanagment;
-
+import homework.employeemanagment.exception.EmployeeNotFoundException;
 import homework.employeemanagment.exception.CompanyNotFoundException;
 import homework.employeemanagment.model.Company;
 import homework.employeemanagment.model.Employee;
