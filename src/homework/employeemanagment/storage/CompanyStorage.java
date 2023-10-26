@@ -1,5 +1,6 @@
 package homework.employeemanagment.storage;
 
+import homework.employeemanagment.exception.CompanyNotFoundException;
 import homework.employeemanagment.model.Company;
 
 public class CompanyStorage {
@@ -25,14 +26,14 @@ public class CompanyStorage {
         companies = tmp;
     }
 
-    public Company getById(String companyId) {
+    public Company getById(String companyId) throws CompanyNotFoundException {
         for (int i = 0; i < size; i++) {
             if (companies[i].getId().equals(companyId)) {
                 return companies[i];
             }
 
         }
-        return null;
+        throw new CompanyNotFoundException("Company with " + companyId + " does not found!");
     }
 
     public void deleteById(String companyId) {

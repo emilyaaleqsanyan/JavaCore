@@ -26,13 +26,13 @@ public class EmployeeStorage {
         employees = tmp;
     }
 
-    public Employee getById(String employeeId) {
+    public Employee getById(String employeeId) throws EmployeeNotFoundException {
         for (int i = 0; i < size; i++) {
             if (employees[i].getId().equals(employeeId)) {
                 return employees[i];
             }
         }
-        return null;
+        throw new EmployeeNotFoundException("Null");
     }
 
     public void searchEmployeesByCompany(Company companyFromStorage) {
