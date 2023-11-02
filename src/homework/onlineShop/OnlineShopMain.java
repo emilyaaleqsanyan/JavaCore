@@ -126,7 +126,11 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
                     orderStorage.print();
                     break;
                 case CHANG_ORDER_STATUS:
-                    changeOrderStatus();
+                    try {
+                        changeOrderStatus();
+                    } catch (OutOfStockException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
             }
         }
@@ -166,19 +170,14 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
 
 
     private static void cancelOrderById() {
-        try {
             System.out.println("Please input order id");
             printMyOrders();
             String id = scanner.nextLine();
             Order order = orderStorage.getOrderById(id);
             if (order != null) {
-                orderStorage.canselOrderById(id);
+                order.setOrderStatus(OrderStatus.CANCELED);
                 System.out.println("Order cansel");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-
     }
 
 
@@ -201,7 +200,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
                 double productPrice = product.getPrice();
                 long price = (long) (productPrice * qty);
                 System.out.println("Do you want to buy this product " + qty + " things " + "and " + price + " $ ");
-                System.out.println("Please choose YES or NO");
+                System.out.println("Choose YES if you agree");
                 String answer = scanner.nextLine().toUpperCase();
                 switch (answer) {
                     case "YES":
@@ -211,9 +210,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
                         orderStorage.add(order);
                         System.out.println("Order registered!");
                         break;
-                    case "NO":
 
-                        break;
                 }
             }
         } catch (OutOfStockException e) {
@@ -274,10 +271,16 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
     }
 
 
-    private static void changeOrderStatus() {
-        int orderQty = orderStorage.orderQty();
-        Product product = orderStorage.getProductId();
-        productStorage.deleteOrderByQty(orderQty, product);
+    private static void changeOrderStatus() throws OutOfStockException {
+           Order[] order = orderStorage.orderQty();
+
+        for (Order order1 : order) {
+            String id = order1.getProduct().getId();
+            int qty = order1.getQty();
+            Product product = productStorage.getProduct(id);
+            int stockQty = product.getStockQty();
+            product.setStockQty(stockQty - qty);
+        }
 
     }
 

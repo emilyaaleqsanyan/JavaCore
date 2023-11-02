@@ -34,14 +34,15 @@ public class OrderStorage {
         return null;
     }
 
-    public int orderQty() {
+    public Order[] orderQty() {
+        int j = 0;
+        Order[] newOrders = new Order[size];
         for (int i = 0; i < size; i++) {
             if (orders[i].getOrderStatus().equals(OrderStatus.DELIVERED)) {
-                return orders[i].getQty();
+                newOrders[j++] = orders[i];
             }
-
         }
-        return -1;
+        return newOrders;
     }
 
 
@@ -55,17 +56,7 @@ public class OrderStorage {
     }
 
 
-    public void canselOrderById(String id) throws ArrayIndexOutOfBoundsException {
-        for (int i = 0; i < size; i++) {
-            if (orders[i].getId().equals(id)) {
-                for (int j = i; j < size; j++) {
-                    orders[j] = orders[j + 1];
-                }
-            }
-        }
-        size--;
-        throw new ArrayIndexOutOfBoundsException();
-    }
+//
 
     public Order getOrderById(String id) {
         for (int i = 0; i < size; i++) {
