@@ -31,7 +31,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
     private static UserStorage userStorage = StorageSerializeUtil.deserialazeUserStorage();
     private static ProductStorage productStorage = StorageSerializeUtil.deserialazeProductStorage();
     private static OrderStorage orderStorage = StorageSerializeUtil.deserialazeOrderStorage();
-    private static AdminStorage adminStorage = StorageSerializeUtil.deserialazeAdminStorage();
+    private static AdminStorage adminStorage = new AdminStorage();
     public static User currentUser = null;
 
 

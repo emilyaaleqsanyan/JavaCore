@@ -43,16 +43,6 @@ public abstract class StorageSerializeUtil {
     }
 
 
-    public static void serializeAdminStorage(AdminStorage adminStorage) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(ADMIN_FILE_PATH))) {
-            outputStream.writeObject(adminStorage);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static UserStorage deserialazeUserStorage() {
         File file = new File(USER_FILE_PATH);
         if (!file.exists()) {
@@ -102,19 +92,5 @@ public abstract class StorageSerializeUtil {
         return new OrderStorage();
     }
 
-    public static AdminStorage deserialazeAdminStorage() {
-        File file = new File(ADMIN_FILE_PATH);
-        if(!file.exists()){
-            return new AdminStorage();
-        }
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(ADMIN_FILE_PATH))) {
-            Object o = inputStream.readObject();
-            if (o instanceof AdminStorage adminStorage) {
-                return adminStorage;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return new AdminStorage();
-    }
+
 }
