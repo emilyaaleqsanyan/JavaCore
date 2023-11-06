@@ -3,8 +3,11 @@ package homework.onlineShop.storage;
 
 import homework.onlineShop.enums.UserType;
 import homework.onlineShop.model.User;
+import homework.onlineShop.util.StorageSerializeUtil;
 
-public class UserStorage {
+import java.io.Serializable;
+
+public class UserStorage implements Serializable {
     private User[] users = new User[10];
     private int size;
 
@@ -13,6 +16,7 @@ public class UserStorage {
             extend();
         }
         users[size++] = user;
+        StorageSerializeUtil.serializeUserStorage(this);
     }
 
     public void print() {

@@ -4,8 +4,11 @@ import homework.onlineShop.enums.OrderStatus;
 import homework.onlineShop.model.Order;
 import homework.onlineShop.model.Product;
 import homework.onlineShop.model.User;
+import homework.onlineShop.util.StorageSerializeUtil;
 
-public class OrderStorage {
+import java.io.Serializable;
+
+public class OrderStorage implements Serializable {
     private Order[] orders = new Order[10];
     private int size;
 
@@ -15,6 +18,7 @@ public class OrderStorage {
             extend();
         }
         orders[size++] = order;
+        StorageSerializeUtil.serializeOrderStorage(this);
     }
 
 
@@ -25,16 +29,28 @@ public class OrderStorage {
     }
 
 
-    public Order getMyOrders(User currentUser) {
+    public Order[] getMyOrders(User currentUser) {
+       int j = 0;
+       Order[] newOrders = new Order[size];
         for (int i = 0; i < size; i++) {
             if (orders[i].getUser().equals(currentUser)) {
-                return orders[i];
+                newOrders[j++] = orders[i];
             }
         }
-        return null;
+        return newOrders;
     }
 
-    public Order[] orderQty() {
+    public void orderStatusChange(){
+        for (int i = 0; i < size; i++) {
+            if(orders[i].getQty() < orders[i].getProduct().getStockQty()){
+                orders[i].setOrderStatus(OrderStatus.DELIVERED);
+            }
+        }
+
+
+    }
+
+    public Order[] newOrder() {
         int j = 0;
         Order[] newOrders = new Order[size];
         for (int i = 0; i < size; i++) {
@@ -43,20 +59,8 @@ public class OrderStorage {
             }
         }
         return newOrders;
+
     }
-
-
-    public Product getProductId() {
-        for (int i = 0; i < size; i++) {
-            if (orders[i].getOrderStatus().equals(OrderStatus.DELIVERED)) {
-                return orders[i].getProduct();
-            }
-        }
-        return null;
-    }
-
-
-//
 
     public Order getOrderById(String id) {
         for (int i = 0; i < size; i++) {

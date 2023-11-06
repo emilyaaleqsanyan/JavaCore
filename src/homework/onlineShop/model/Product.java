@@ -2,9 +2,10 @@ package homework.onlineShop.model;
 
 import homework.onlineShop.enums.ProductType;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
 
     private String id;
     private String name;

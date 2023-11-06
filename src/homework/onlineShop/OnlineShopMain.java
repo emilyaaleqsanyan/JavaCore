@@ -15,6 +15,7 @@ import homework.onlineShop.storage.AdminStorage;
 import homework.onlineShop.storage.OrderStorage;
 import homework.onlineShop.storage.ProductStorage;
 import homework.onlineShop.storage.UserStorage;
+import homework.onlineShop.util.StorageSerializeUtil;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -27,10 +28,10 @@ import static homework.onlineShop.enums.UserType.USER;
 public class OnlineShopMain implements Register, UserCommands, AdminCommands {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static UserStorage userStorage = new UserStorage();
-    private static ProductStorage productStorage = new ProductStorage();
-    private static OrderStorage orderStorage = new OrderStorage();
-    private static AdminStorage adminStorage = new AdminStorage();
+    private static UserStorage userStorage = StorageSerializeUtil.deserialazeUserStorage();
+    private static ProductStorage productStorage = StorageSerializeUtil.deserialazeProductStorage();
+    private static OrderStorage orderStorage = StorageSerializeUtil.deserialazeOrderStorage();
+    private static AdminStorage adminStorage = StorageSerializeUtil.deserialazeAdminStorage();
     public static User currentUser = null;
 
 
@@ -164,20 +165,24 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
     }
 
     private static void printMyOrders() {
-        Order myorder = orderStorage.getMyOrders(currentUser);
-        System.out.println(myorder);
+        Order[] myOrder = orderStorage.getMyOrders(currentUser);
+        for (Order order : myOrder) {
+            System.out.println(order);
+        }
+
     }
 
 
     private static void cancelOrderById() {
-            System.out.println("Please input order id");
-            printMyOrders();
-            String id = scanner.nextLine();
-            Order order = orderStorage.getOrderById(id);
-            if (order != null) {
-                order.setOrderStatus(OrderStatus.CANCELED);
-                System.out.println("Order cansel");
-            }
+        System.out.println("Please input order id");
+        printMyOrders();
+        String id = scanner.nextLine();
+        Order order = orderStorage.getOrderById(id);
+        if (order != null) {
+            order.setOrderStatus(OrderStatus.CANCELED);
+            System.out.println("Order cansel");
+
+        }
     }
 
 
@@ -209,8 +214,8 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
                         Order order = new Order(uuid, currentUser, product, registerDate, product.getPrice(), OrderStatus.NEW, qty, method);
                         orderStorage.add(order);
                         System.out.println("Order registered!");
-                        break;
 
+                        break;
                 }
             }
         } catch (OutOfStockException e) {
@@ -247,6 +252,8 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
         Product product = new Product(productId, productName, description, prise, stockQty, type);
         productStorage.add(product);
         System.out.println("product registered!");
+
+
     }
 
 
@@ -268,11 +275,14 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
         User user = new User(id, name, email, password, type2);
         userStorage.add(user);
         System.out.println("User registered!");
+
+
     }
 
 
     private static void changeOrderStatus() throws OutOfStockException {
-           Order[] order = orderStorage.orderQty();
+        orderStorage.orderStatusChange();
+        Order[] order = orderStorage.newOrder();
 
         for (Order order1 : order) {
             String id = order1.getProduct().getId();
@@ -280,6 +290,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
             Product product = productStorage.getProduct(id);
             int stockQty = product.getStockQty();
             product.setStockQty(stockQty - qty);
+            StorageSerializeUtil.serializeProductStorage(productStorage);
         }
 
     }
@@ -288,6 +299,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
         System.out.println("please input id");
         String id = scanner.nextLine();
         productStorage.removeById(id);
+
     }
 }
 
