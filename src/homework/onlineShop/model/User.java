@@ -10,14 +10,14 @@ public class User implements Serializable {
     private String name;
     private String emile;
     private String password;
-    private UserType type2;
+    private UserType userType;
 
-    public User(String id, String name, String emile, String password, UserType type2) {
+    public User(String id, String name, String emile, String password, UserType userType) {
         this.id = id;
         this.name = name;
         this.emile = emile;
         this.password = password;
-        this.type2 = type2;
+        this.userType = userType;
     }
 
     public User() {
@@ -55,12 +55,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public UserType getType2() {
-        return type2;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setType2(UserType type2) {
-        this.type2 = type2;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
 
@@ -71,7 +71,7 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", emile='" + emile + '\'' +
                 ", password='" + password + '\'' +
-                ", type2=" + type2 +
+                ", type2=" + userType +
                 '}';
     }
 
@@ -80,12 +80,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(emile, user.emile) && Objects.equals(password, user.password) && type2 == user.type2;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(emile, user.emile) && Objects.equals(password, user.password) && userType == user.userType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, emile, password, type2);
+        return Objects.hash(id, name, emile, password, userType);
     }
 }
 

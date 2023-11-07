@@ -21,7 +21,7 @@ public class UserStorage implements Serializable {
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            if (users[i].getType2() == UserType.USER) {
+            if (users[i].getUserType() == UserType.USER) {
                 System.out.println(users[i]);
             }
         }

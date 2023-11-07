@@ -17,6 +17,7 @@ import homework.onlineShop.storage.ProductStorage;
 import homework.onlineShop.storage.UserStorage;
 import homework.onlineShop.util.StorageSerializeUtil;
 
+import java.time.Year;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
@@ -64,41 +65,45 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
         String type = scanner.nextLine().toUpperCase();
         switch (type) {
             case "ADMIN":
-                AdminLogin();
+                adminLogin();
                 break;
             case "USER":
-                UserLogin();
+                userLogin();
                 break;
         }
     }
 
 
-    private static void AdminLogin() {
+    private static void adminLogin() {
         System.out.println("Please input email");
         String email = scanner.nextLine();
         System.out.println("Please input password");
         String password = scanner.nextLine();
         User user = adminStorage.searchAdminByEmailPassword(email, password);
         if (user != null) {
-            if (user.getType2() == ADMIN) {
+            if (user.getUserType() == ADMIN) {
                 adminCommand();
             }
-        } else System.out.println("Invalid email or password. Please try again.");
+        } else {
+            System.out.println("Invalid email or password. Please try again.");
+        }
     }
 
 
-    private static void UserLogin() {
+    private static void userLogin() {
         System.out.println("Please input email");
         String email = scanner.nextLine();
         System.out.println("please input password");
         String password = scanner.nextLine();
         User user = userStorage.searchByEmailPassword(email, password);
         if (user != null) {
-            if (user.getType2() == USER) {
+            if (user.getUserType() == USER) {
                 currentUser = user;
                 userCommand();
             }
-        } else System.out.println("Invalid email or password. Please try again.");
+        } else {
+            System.out.println("Invalid email or password. Please try again.");
+        }
     }
 
 
@@ -207,15 +212,12 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
                 System.out.println("Do you want to buy this product " + qty + " things " + "and " + price + " $ ");
                 System.out.println("Choose YES if you agree");
                 String answer = scanner.nextLine().toUpperCase();
-                switch (answer) {
-                    case "YES":
-                        Date registerDate = new Date();
-                        String uuid = orderId();
-                        Order order = new Order(uuid, currentUser, product, registerDate, product.getPrice(), OrderStatus.NEW, qty, method);
-                        orderStorage.add(order);
-                        System.out.println("Order registered!");
-
-                        break;
+                if (answer.equals("YES")) {
+                    Date registerDate = new Date();
+                    String uuid = generateOrderId();
+                    Order order = new Order(uuid, currentUser, product, registerDate, product.getPrice(), OrderStatus.NEW, qty, method);
+                    orderStorage.add(order);
+                    System.out.println("Order registered!");
                 }
             }
         } catch (OutOfStockException e) {
@@ -224,7 +226,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
     }
 
 
-    private static String orderId() {
+    private static String generateOrderId() {
         String uuid = UUID.randomUUID().toString();
         String[] uuids = uuid.split("-");
         String id = uuids[0];
@@ -282,9 +284,9 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
 
     private static void changeOrderStatus() throws OutOfStockException {
         orderStorage.orderStatusChange();
-        Order[] order = orderStorage.newOrder();
+        Order[] orders = orderStorage.newOrder();
 
-        for (Order order1 : order) {
+        for (Order order1 : orders) {
             String id = order1.getProduct().getId();
             int qty = order1.getQty();
             Product product = productStorage.getProduct(id);
