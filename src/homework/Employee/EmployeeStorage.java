@@ -25,7 +25,7 @@ public class EmployeeStorage {
         for (int i = 0; i < size; i++) {
             if (employees[i].getEmployeeID().contains(keyword)) {
                 System.out.println(employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getEmployeeID() + " " + employees[i].getSalary() + " " + employees[i].getCompany());
-                ;
+
 
             }
         }
