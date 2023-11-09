@@ -8,7 +8,8 @@ public class DateUtil {
 
     public static final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat SDTM = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    public static String dateTimeTOString(Date dateTime){
+
+    public static String dateTimeTOString(Date dateTime) {
         return SDTM.format(dateTime);
     }
 
@@ -18,6 +19,7 @@ public class DateUtil {
 
 
     public static boolean isSameDay(Date day1, Date day2) {
+
         return SDF.format(day1).equals(SDF.format(day2));
     }
 }
