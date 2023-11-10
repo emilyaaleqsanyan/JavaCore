@@ -1,9 +1,8 @@
-package homework.onlineShop.util;
+package homework1.onlineShop.util;
 
-import homework.onlineShop.storage.AdminStorage;
-import homework.onlineShop.storage.OrderStorage;
-import homework.onlineShop.storage.ProductStorage;
-import homework.onlineShop.storage.UserStorage;
+import homework1.onlineShop.storage.OrderStorage;
+import homework1.onlineShop.storage.ProductStorage;
+import homework1.onlineShop.storage.UserStorage;
 
 import java.io.*;
 

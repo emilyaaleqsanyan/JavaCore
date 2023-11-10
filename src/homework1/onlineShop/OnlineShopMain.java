@@ -1,29 +1,28 @@
-package homework.onlineShop;
+package homework1.onlineShop;
 
-import homework.onlineShop.commands.AdminCommands;
-import homework.onlineShop.commands.Register;
-import homework.onlineShop.commands.UserCommands;
-import homework.onlineShop.enums.OrderStatus;
-import homework.onlineShop.enums.PaymentMethod;
-import homework.onlineShop.exception.OutOfStockException;
-import homework.onlineShop.model.Order;
-import homework.onlineShop.model.Product;
-import homework.onlineShop.enums.ProductType;
-import homework.onlineShop.enums.UserType;
-import homework.onlineShop.model.User;
-import homework.onlineShop.storage.AdminStorage;
-import homework.onlineShop.storage.OrderStorage;
-import homework.onlineShop.storage.ProductStorage;
-import homework.onlineShop.storage.UserStorage;
-import homework.onlineShop.util.StorageSerializeUtil;
+import homework1.onlineShop.commands.AdminCommands;
+import homework1.onlineShop.commands.Register;
+import homework1.onlineShop.commands.UserCommands;
+import homework1.onlineShop.enums.OrderStatus;
+import homework1.onlineShop.enums.PaymentMethod;
+import homework1.onlineShop.exception.OutOfStockException;
+import homework1.onlineShop.model.Order;
+import homework1.onlineShop.model.Product;
+import homework1.onlineShop.enums.ProductType;
+import homework1.onlineShop.enums.UserType;
+import homework1.onlineShop.model.User;
+import homework1.onlineShop.storage.AdminStorage;
+import homework1.onlineShop.storage.OrderStorage;
+import homework1.onlineShop.storage.ProductStorage;
+import homework1.onlineShop.storage.UserStorage;
+import homework1.onlineShop.util.StorageSerializeUtil;
 
-import java.time.Year;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
 
-import static homework.onlineShop.enums.UserType.ADMIN;
-import static homework.onlineShop.enums.UserType.USER;
+import static homework1.onlineShop.enums.UserType.ADMIN;
+import static homework1.onlineShop.enums.UserType.USER;
 
 
 public class OnlineShopMain implements Register, UserCommands, AdminCommands {

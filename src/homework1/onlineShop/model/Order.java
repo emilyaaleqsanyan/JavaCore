@@ -1,7 +1,7 @@
-package homework.onlineShop.model;
+package homework1.onlineShop.model;
 
-import homework.onlineShop.enums.OrderStatus;
-import homework.onlineShop.enums.PaymentMethod;
+import homework1.onlineShop.enums.OrderStatus;
+import homework1.onlineShop.enums.PaymentMethod;
 
 import java.io.Serializable;
 import java.util.Date;

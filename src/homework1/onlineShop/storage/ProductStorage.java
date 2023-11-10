@@ -1,8 +1,8 @@
-package homework.onlineShop.storage;
+package homework1.onlineShop.storage;
 
-import homework.onlineShop.exception.OutOfStockException;
-import homework.onlineShop.model.Product;
-import homework.onlineShop.util.StorageSerializeUtil;
+import homework1.onlineShop.exception.OutOfStockException;
+import homework1.onlineShop.model.Product;
+import homework1.onlineShop.util.StorageSerializeUtil;
 
 import java.io.Serializable;
 

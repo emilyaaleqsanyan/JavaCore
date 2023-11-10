@@ -1,6 +1,6 @@
-package homework.onlineShop.model;
+package homework1.onlineShop.model;
 
-import homework.onlineShop.enums.ProductType;
+import homework1.onlineShop.enums.ProductType;
 
 import java.io.Serializable;
 import java.util.Objects;
