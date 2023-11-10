@@ -1,7 +1,7 @@
-package homework1.onlineStore.storage;
+package homework.onlineStore.storage;
 
-import homework1.onlineStore.model.Product;
-import homework1.onlineStore.util.StorageSerializeUtil;
+import homework.onlineStore.model.Product;
+import homework.onlineStore.util.StorageSerializeUtil;
 
 import java.io.Serializable;
 

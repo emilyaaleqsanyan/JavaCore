@@ -1,4 +1,4 @@
-package homework1.onlineStore.model.enams;
+package homework.onlineStore.model.enams;
 
 public enum PaymentMethod {
     CARD,

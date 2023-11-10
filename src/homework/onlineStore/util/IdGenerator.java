@@ -1,4 +1,4 @@
-package homework1.onlineStore.util;
+package homework.onlineStore.util;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package homework1.onlineStore;
+package homework.onlineStore;
 
 public interface Commands {
 

@@ -1,8 +1,8 @@
-package homework1.onlineStore.storage;
+package homework.onlineStore.storage;
 
-import homework1.onlineStore.model.User;
-import homework1.onlineStore.model.enams.UserType;
-import homework1.onlineStore.util.StorageSerializeUtil;
+import homework.onlineStore.model.User;
+import homework.onlineStore.model.enams.UserType;
+import homework.onlineStore.util.StorageSerializeUtil;
 
 import java.io.Serializable;
 

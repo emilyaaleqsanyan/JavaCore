@@ -1,17 +1,17 @@
-package homework1.onlineStore;
+package homework.onlineStore;
 
-import homework1.onlineStore.model.Order;
-import homework1.onlineStore.model.Product;
-import homework1.onlineStore.model.User;
-import homework1.onlineStore.model.enams.OrderStatus;
-import homework1.onlineStore.model.enams.PaymentMethod;
-import homework1.onlineStore.model.enams.ProductType;
-import homework1.onlineStore.model.enams.UserType;
-import homework1.onlineStore.storage.OrderStorage;
-import homework1.onlineStore.storage.ProductStorage;
-import homework1.onlineStore.storage.UserStorage;
-import homework1.onlineStore.util.IdGenerator;
-import homework1.onlineStore.util.StorageSerializeUtil;
+import homework.onlineStore.model.Order;
+import homework.onlineStore.model.Product;
+import homework.onlineStore.model.User;
+import homework.onlineStore.model.enams.OrderStatus;
+import homework.onlineStore.model.enams.PaymentMethod;
+import homework.onlineStore.model.enams.ProductType;
+import homework.onlineStore.model.enams.UserType;
+import homework.onlineStore.storage.OrderStorage;
+import homework.onlineStore.storage.ProductStorage;
+import homework.onlineStore.storage.UserStorage;
+import homework.onlineStore.util.IdGenerator;
+import homework.onlineStore.util.StorageSerializeUtil;
 
 import java.util.Date;
 import java.util.Scanner;

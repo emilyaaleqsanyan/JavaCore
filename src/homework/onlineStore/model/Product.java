@@ -1,6 +1,6 @@
-package homework1.onlineStore.model;
+package homework.onlineStore.model;
 
-import homework1.onlineStore.model.enams.ProductType;
+import homework.onlineStore.model.enams.ProductType;
 
 import java.io.Serializable;
 import java.util.Objects;

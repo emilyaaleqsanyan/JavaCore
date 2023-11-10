@@ -1,8 +1,8 @@
-package homework1.onlineStore.model;
+package homework.onlineStore.model;
 
-import homework.onlineShop.model.User;
-import homework1.onlineStore.model.enams.OrderStatus;
-import homework1.onlineStore.model.enams.PaymentMethod;
+import homework1.onlineShop.model.User;
+import homework.onlineStore.model.enams.OrderStatus;
+import homework.onlineStore.model.enams.PaymentMethod;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,7 +31,7 @@ public class Order implements Serializable {
         this.paymentMethod = paymentMethod;
     }
 
-    public Order(String id, homework1.onlineStore.model.User currentUser, Product product, int qty, Date date, double price, OrderStatus aNew, PaymentMethod paymentMethod) {
+    public Order(String id, homework.onlineStore.model.User currentUser, Product product, int qty, Date date, double price, OrderStatus aNew, PaymentMethod paymentMethod) {
     }
 
     public String getId() {
