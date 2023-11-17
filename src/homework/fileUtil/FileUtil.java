@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class FileUtil {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        fileSearch();
-//        contentSearch();
-//        printSizeOfPackage();
-//        createFileWithContent();
+        fileSearch();
+        contentSearch();
+        printSizeOfPackage();
+        createFileWithContent();
         findLines();
 
     }
@@ -49,8 +49,6 @@ public class FileUtil {
                     if (br.readLine().contains(keyword)) {
                         System.out.println(f.getName());
                     }
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -74,12 +72,10 @@ public class FileUtil {
             String str;
             try (BufferedReader br = new BufferedReader((new FileReader(txtPath)))) {
                 str = br.readLine();
-                if(str.contains(keyword)) {
+                if (str.contains(keyword)) {
                     System.out.println(str);
                 }
-            } catch(FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch ( IOException e) {
                 throw new RuntimeException(e);
             }
         }
