@@ -16,7 +16,7 @@ import homework.onlineStore.util.StorageSerializeUtil;
 import java.util.Date;
 import java.util.Scanner;
 
-public class OnlineStoreMain implements Commands{
+public class OnlineStoreMain implements Commands {
     private final static Scanner SCANNER = new Scanner(System.in);
     private final static OrderStorage ORDER_STORAGE = StorageSerializeUtil.deserializeOrderStorage();
     private final static ProductStorage PRODUCT_STORAGE = StorageSerializeUtil.deserializeProductStorage();
@@ -56,7 +56,7 @@ public class OnlineStoreMain implements Commands{
         }
         try {
             user = new User(IdGenerator.generateId(), userDataArr[0], userDataArr[1], userDataArr[2], UserType.valueOf(userDataArr[3].toUpperCase()));
-            USER_STORAGE.add(user);
+            USER_STORAGE.put(userDataArr[1], user);
             System.out.println("User registered!");
         } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid data or user type!");
