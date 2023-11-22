@@ -27,10 +27,11 @@ public class UserStorage implements Serializable {
     public User searchByEmailPassword(String email, String password) {
         for (Map.Entry<String, User> stringUserEntry : users.entrySet()) {
             if (stringUserEntry.getKey().equals(email) && stringUserEntry.getValue().getPassword().equals(password)) {
-                return  stringUserEntry.getValue();
+                return stringUserEntry.getValue();
             }
 
-        } return null;
+        }
+        return null;
     }
 }
 

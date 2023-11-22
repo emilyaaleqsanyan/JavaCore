@@ -9,11 +9,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ProductStorage implements Serializable {
-    private Set<Product> products = new HashSet<>();;
+    private Set<Product> products = new HashSet<>();
+    ;
 
 
     public void add(Product product) {
-       products.add(product);
+        products.add(product);
         StorageSerializeUtil.serializeProductStorage(this);
     }
 
@@ -25,30 +26,25 @@ public class ProductStorage implements Serializable {
     }
 
 
-
-
     public void removeById(String id) {
         for (Product product : products) {
-            if(product.getId().equals(id)){
+            if (product.getId().equals(id)) {
                 products.remove(product);
+
             }
         }
         StorageSerializeUtil.serializeProductStorage(this);
     }
 
 
-
     public Product getProduct(String id) throws OutOfStockException {
         for (Product product : products) {
-            if(product.getId().equals(id)){
+            if (product.getId().equals(id)) {
                 return product;
             }
         }
         throw new OutOfStockException("not available");
     }
-
-
-
 
 
 }

@@ -274,7 +274,7 @@ public class OnlineShopMain implements Register, UserCommands, AdminCommands {
         }
         UserType type2 = UserType.valueOf(scanner.nextLine().toUpperCase());
         User user = new User(id, name, email, password, type2);
-        userStorage.add(email,user);
+        userStorage.add(email, user);
         System.out.println("User registered!");
 
 

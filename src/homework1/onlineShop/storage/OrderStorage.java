@@ -27,8 +27,8 @@ public class OrderStorage implements Serializable {
 
 
     public Order[] getMyOrders(User currentUser) {
-       int j = 0;
-       Order[] newOrders = new Order[orders.size()];
+        int j = 0;
+        Order[] newOrders = new Order[orders.size()];
         for (Order order : orders) {
             if (order.getUser().equals(currentUser)) {
                 newOrders[j++] = order;
@@ -37,9 +37,9 @@ public class OrderStorage implements Serializable {
         return newOrders;
     }
 
-    public void orderStatusChange(){
+    public void orderStatusChange() {
         for (Order order : orders) {
-            if(order.getQty() < order.getProduct().getStockQty()){
+            if (order.getQty() < order.getProduct().getStockQty()) {
                 order.setOrderStatus(OrderStatus.DELIVERED);
             }
         }
@@ -53,6 +53,7 @@ public class OrderStorage implements Serializable {
         for (Order order : orders) {
             if (order.getOrderStatus().equals(OrderStatus.DELIVERED)) {
                 newOrders[j++] = order;
+
             }
         }
         return newOrders;
