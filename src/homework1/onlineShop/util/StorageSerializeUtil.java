@@ -7,10 +7,10 @@ import homework1.onlineShop.storage.UserStorage;
 import java.io.*;
 
 public abstract class StorageSerializeUtil {
-    private static final String USER_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework\\onlineShop\\data\\userStorage.dat";
-    private static final String PRODUCT_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework\\onlineShop\\data\\productStorage.dat";
-    private static final String ORDER_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework\\onlineShop\\data\\orderStrage.dat";
-    private static final String ADMIN_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework\\onlineShop\\data\\adminStorage.dat";
+    private static final String USER_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework1\\onlineShop\\data\\userStorage.dat";
+    private static final String PRODUCT_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework1\\onlineShop\\data\\productStorage.dat";
+    private static final String ORDER_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework1\\onlineShop\\data\\orderStrage.dat";
+    private static final String ADMIN_FILE_PATH = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework1\\onlineShop\\data\\adminStorage.dat";
 
     public static void serializeUserStorage(UserStorage userStorage) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(USER_FILE_PATH))) {

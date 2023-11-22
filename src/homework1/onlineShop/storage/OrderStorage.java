@@ -6,43 +6,41 @@ import homework1.onlineShop.model.User;
 import homework1.onlineShop.util.StorageSerializeUtil;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OrderStorage implements Serializable {
-    private Order[] orders = new Order[10];
-    private int size;
+    private final List<Order> orders = new LinkedList<>();
 
 
     public void add(Order order) {
-        if (size == orders.length) {
-            extend();
-        }
-        orders[size++] = order;
+        orders.add(order);
         StorageSerializeUtil.serializeOrderStorage(this);
     }
 
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(orders[i]);
+        for (Order order : orders) {
+            System.out.println(order);
         }
     }
 
 
     public Order[] getMyOrders(User currentUser) {
        int j = 0;
-       Order[] newOrders = new Order[size];
-        for (int i = 0; i < size; i++) {
-            if (orders[i].getUser().equals(currentUser)) {
-                newOrders[j++] = orders[i];
+       Order[] newOrders = new Order[orders.size()];
+        for (Order order : orders) {
+            if (order.getUser().equals(currentUser)) {
+                newOrders[j++] = order;
             }
         }
         return newOrders;
     }
 
     public void orderStatusChange(){
-        for (int i = 0; i < size; i++) {
-            if(orders[i].getQty() < orders[i].getProduct().getStockQty()){
-                orders[i].setOrderStatus(OrderStatus.DELIVERED);
+        for (Order order : orders) {
+            if(order.getQty() < order.getProduct().getStockQty()){
+                order.setOrderStatus(OrderStatus.DELIVERED);
             }
         }
 
@@ -51,10 +49,10 @@ public class OrderStorage implements Serializable {
 
     public Order[] newOrder() {
         int j = 0;
-        Order[] newOrders = new Order[size];
-        for (int i = 0; i < size; i++) {
-            if (orders[i].getOrderStatus().equals(OrderStatus.DELIVERED)) {
-                newOrders[j++] = orders[i];
+        Order[] newOrders = new Order[orders.size()];
+        for (Order order : orders) {
+            if (order.getOrderStatus().equals(OrderStatus.DELIVERED)) {
+                newOrders[j++] = order;
             }
         }
         return newOrders;
@@ -62,20 +60,14 @@ public class OrderStorage implements Serializable {
     }
 
     public Order getOrderById(String id) {
-        for (int i = 0; i < size; i++) {
-            if (orders[i].getId().equals(id)) {
-                return orders[i];
+        for (Order order : orders) {
+            if (order.getId().equals(id)) {
+                return order;
             }
         }
         return null;
     }
 
-
-    private void extend() {
-        Order[] tmp = new Order[orders.length + 10];
-        System.arraycopy(orders, 0, tmp, 0, orders.length);
-        orders = tmp;
-    }
 }
 
 

@@ -100,6 +100,8 @@ public class Product implements Serializable {
     public int hashCode() {
         return Objects.hash(id, name, description, price, stockQty, type);
     }
+
+
 }
 
 
