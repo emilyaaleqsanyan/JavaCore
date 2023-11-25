@@ -27,7 +27,7 @@ public class FileAnalyzer {
                         myMap.put(str[i], 1);
                     } else {
                         Integer val = myMap.get(str[i]);
-                        myMap.put(str[i], val++);
+                        myMap.put(str[i], ++val);
                     }
                 }
             }
