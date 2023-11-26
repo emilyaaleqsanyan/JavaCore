@@ -1,6 +1,7 @@
 package homework.fileAnalyzer;
 
 
+import classwork.chapter8.M;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -81,29 +82,18 @@ public class FileAnalyzer {
 
     public static Map<String, Integer> topFrequentWords(String path, int n) throws IOException {
         // Читаем файл, находим топ-N часто встречающихся слов
-        File file = new File(path);
-        if (file.isFile()) {
-            try (BufferedReader br = new BufferedReader((new FileReader(file)))) {
-                Map<String, Integer> myMap = new TreeMap<>();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] str = line.split(" ");
-                    for (int i = 0; i < str.length; i++) {
-                        if (!myMap.containsKey(str[i])) {
-                            myMap.put(str[i], 1);
-                        } else {
-                            Integer val = myMap.get(str[i]);
-                            myMap.put(str[i], ++val);
-                        }
 
-
-                    }return myMap;
-                }
-            }
-        }return new TreeMap<>();
+        Map<String, Integer> myMap = wordMap(path);
+        MyComparator comparator = new MyComparator(myMap);
+        TreeMap<String, Integer> newMap = new TreeMap<>(comparator);
+        TreeMap<String,Integer> treeMap = new TreeMap<>();
+        newMap.putAll(myMap);
+        for (int i = 0; i < n; i++) {
+            Map.Entry<String, Integer> mapEntry = newMap.pollFirstEntry();
+            treeMap.put(mapEntry.getKey(),mapEntry.getValue());
+        }
+       return  treeMap;
     }
-
-
 
 
     public static int countWordOccurrences(String path, String word) throws IOException {

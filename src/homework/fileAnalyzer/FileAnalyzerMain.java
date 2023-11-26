@@ -13,16 +13,13 @@ public class FileAnalyzerMain {
 
         String path = "C:\\Users\\Lenovo\\IdeaProjects\\JavaCore\\src\\homework\\fileUtil\\Text.txt";
         String word = "aram";
-        int n = 4;
-         //   System.out.println(FileAnalyzer.totalWordCount( path));
+        int n = 2;
+        //   System.out.println(FileAnalyzer.totalWordCount( path));
 
 
 //        System.out.println(FileAnalyzer.countWordOccurrences(path,word));
 //
 //        System.out.println(FileAnalyzer.uniqueWordCount(path));
-
-
-
 
 
 //            Map<String,Integer> myMap = FileAnalyzer.wordMap(path);
@@ -31,12 +28,10 @@ public class FileAnalyzerMain {
 //            }
 
 
-
-        try {
-            Map<String,Integer> myMap = FileAnalyzer.topFrequentWords(path,n);
-            System.out.println(myMap);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        Map<String, Integer> myMap = FileAnalyzer.topFrequentWords(path, n);
+        for (Map.Entry<String, Integer> stringIntegerEntry : myMap.entrySet()) {
+            System.out.println(stringIntegerEntry);
         }
-   }
+
+    }
 }
